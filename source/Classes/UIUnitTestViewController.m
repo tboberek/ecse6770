@@ -78,8 +78,39 @@
 	{
 		[testText appendString: @"Failed"];
 	}
-
+	
+	// Test initializing the database
+	[testText appendString: @"\nInit DB Test: "];
+	
+	// We're already input something into the patients table, so we
+	// know that's not empty
+	
+	// Disconnect for the time being
+	[sqlConnection close];
+	
+	// Initialize the database
+	[sqlConnection initEditableFileCopy: @"test-database.sqlite"];
+	
+	// Connect back to the database
+	[sqlConnection open: @"test-database.sqlite"];
+	
+	// Add the patient again
+	PatientID newPid = [sqlConnection addPatient: patient];
+	
+	// If the pid is 1, the DB was initialize
+	if (1 == newPid)
+	{
+		[testText appendString: @"Passed"];
+	}
+	else 
+	{
+		[testText appendString: @"Failed"];
+	}
 		
+	
+	// Done with tests, disconnect and init the database
+	[sqlConnection close];
+	[sqlConnection initEditableFileCopy: @"test-database.sqlite"];
 	
 	UIAlertView* messageBox = [[UIAlertView alloc] initWithTitle:testTitle message:testText delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
 	

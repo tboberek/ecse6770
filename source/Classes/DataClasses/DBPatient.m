@@ -159,7 +159,7 @@
 
 - (BOOL) equals : (DBPatient*) patient
 {
-	BOOL success = FALSE;
+	BOOL success = NO;
 	
 	if ([self pid] == [patient pid] &&
 		[[self dob] isEqual: [patient dob]] &&
@@ -173,7 +173,7 @@
 		[[self phone] isEqual: [patient phone]] &&
 		[[self email] isEqual: [patient email]])
 	{
-		success = TRUE;
+		success = YES;
 	}
 	
 	return success;

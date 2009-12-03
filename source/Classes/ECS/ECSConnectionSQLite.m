@@ -14,7 +14,7 @@
 {
 	if ( self = [super init])
 	{
-		database = NULL;
+		database = nil;
 	}
 	
 	return self;
@@ -32,7 +32,7 @@
 - (BOOL) open : (NSString*) filename
 {
 	// Assume that we're going to fail
-	//BOOL success = FALSE;
+	//BOOL success = NO;
 	
 	// Check to see if there is an editable copy of the database
 	if (![self doesEditableFileExist : filename])
@@ -52,14 +52,14 @@
 	sqlite3_close (database);
 
 	// Make sure our database connection is
-	// pointing to null
-	database = NULL;
+	// pointing to nil
+	database = nil;
 }
 
 - (BOOL) initDatabaseConnection : (NSString*) filename
 {
 	// Assume that we're going to file
-	BOOL success = FALSE;
+	BOOL success = NO;
 	
 	// Get the path from that database
 	NSString* filePath = [self getEditablePath: filename];
@@ -67,7 +67,7 @@
 	// Attempt to open the database connection
 	if (sqlite3_open ([filePath UTF8String], &database) == SQLITE_OK)
 	{
-		success = TRUE;
+		success = YES;
 	}
 	
 	return success;
@@ -104,6 +104,27 @@
 	
 }
 
+- (BOOL) initEditableFileCopy: (NSString*) filename
+{
+	// Assume we're going to fail
+	BOOL success = NO;
+	
+	// Get the default file manager
+	NSFileManager* fileManager = [NSFileManager defaultManager];
+		
+	// Get the destination editable path we want
+	NSString* dstPath = [self getEditablePath: filename];
+	
+	// Delete any file at the destination path
+	if ([fileManager removeItemAtPath: dstPath error: nil])
+	{
+		success = [self createEditableFileCopy: filename];
+	}
+	
+	return success;
+	
+}
+
 - (NSString*) getEditablePath: (NSString*) filename
 {
 	// Get the documents directory from the list of document directories
@@ -118,13 +139,13 @@
 
 - (BOOL) isConnected
 {
-	return (database != NULL);
+	return (database != nil);
 }
 
 // Functions to load from the database
 - (DBPatient*) getPatient : (PatientID) pid
 {
-	DBPatient* patient = NULL;
+	DBPatient* patient = nil;
 	
 	if ([self isConnected])
 	{

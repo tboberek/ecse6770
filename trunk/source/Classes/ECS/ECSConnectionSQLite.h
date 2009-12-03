@@ -20,7 +20,9 @@
 - (BOOL) initDatabaseConnection : (NSString*) filename;
 - (BOOL) doesEditableFileExist : (NSString*) filename;
 - (BOOL) createEditableFileCopy : (NSString*) filename;
+- (BOOL) initEditableFileCopy : (NSString*) filename;
 
 - (NSString*) getEditablePath : (NSString*) filename;
+
 
 @end

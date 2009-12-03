@@ -7,7 +7,7 @@
 //
 
 #import "UIUnitTestViewController.h"
-#import "DBPatient.h"
+#import "ECSConnectionSQLite.h"
 
 
 @implementation UIUnitTestViewController
@@ -24,19 +24,80 @@
 
 
 // Implement viewDidLoad to do additional setup after loading the view, typically from a nib.
-- (void)viewDidLoad {
+- (void)viewDidLoad 
+{
+	NSString* testTitle = @"Unit Test Results";
+	
+	NSMutableString* testText = [NSMutableString stringWithCapacity: 10];
+	
+	// Basic DB Connection unit test
+	[testText appendString:@"DB Connection: "];
+	
+	ECSConnectionSQLite* sqlConnection = [ECSConnectionSQLite alloc];
+	
+	if ([sqlConnection open: @"test-database.sqlite"])
+	{
+		[testText appendString:@"Passed"];
+	}
+	else 
+	{
+		[testText appendString:@"Failed"];
+	}
+	
+	// Basic Patient add / retrieve test
+	[testText appendString: @"\nAdd / Retrieve Patient: "];
 	DBPatient* patient = [DBPatient alloc];
 	
-	[patient setName : @"Patient Name"];
+	// Setup our patient
+	[patient setPid : -1];
+	[patient setDob : [[NSDate alloc] initWithString: @"2001-03-24 10:45:32 +0600"]];
+	[patient setName : @"Test Patient"];
+	[patient setSex : @"male"];
+	[patient setPassword : @"gibberish"];
+	[patient setAddress : @"14 Hemenway Street"];
+	[patient setCity : @"Boston"];
+	[patient setState : @"MA"];
+	[patient setZip : @"02115"];
+	[patient setPhone : @"617-435-7090"];
+	[patient setEmail : @"test@example.com"];
+
+	// Load the patient
+	PatientID pid = [sqlConnection addPatient: patient];
 	
-	if (@"Patient Name" == [patient name]) 
+	// Update our local copy of the patient with the pid
+	[patient setPid: pid];
+	
+	// Retrieve the patient
+	DBPatient* patientFromDB = [sqlConnection getPatient: pid];
+	
+	if ([patient equals: patientFromDB])
 	{
-		[labelResults setText : @"Basic Unit Test Passed"];
+		[testText appendString: @"Passed"];
 	}
-	else
+	else 
 	{
-		[labelResults setText : @"Basic Unit Test Failed"];
+		[testText appendString: @"Failed"];
 	}
+
+		
+	
+	UIAlertView* messageBox = [[UIAlertView alloc] initWithTitle:testTitle message:testText delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
+	
+	[messageBox show];
+	[messageBox release];
+	
+	//DBPatient* patient = [DBPatient alloc];
+	//
+	//[patient setName : @"Patient Name"];
+	//
+	//if (@"Patient Name" == [patient name]) 
+	//{
+	//	[labelResults setText : @"Basic Unit Test Passed"];
+	//}
+	//else
+	//{
+	//	[labelResults setText : @"Basic Unit Test Failed"];
+	//}
 	
 	[super viewDidLoad];
 }

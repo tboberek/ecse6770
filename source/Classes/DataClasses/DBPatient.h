@@ -62,4 +62,6 @@
 - (void) setPhone : (NSString*) input;
 - (void) setEmail : (NSString*) input;
 
+// Function to determine equality
+- (BOOL) equals : (DBPatient*) patient;
 @end

@@ -28,6 +28,9 @@
 		32B6FA5310C4AA5800FDE3EC /* UIUnitTestViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 32B6FA5110C4AA5800FDE3EC /* UIUnitTestViewController.m */; };
 		32B6FA5410C4AA5800FDE3EC /* UIUnitTestViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 32B6FA5210C4AA5800FDE3EC /* UIUnitTestViewController.xib */; };
 		32B6FA9510C4B09500FDE3EC /* DBPatient.m in Sources */ = {isa = PBXBuildFile; fileRef = 32B6FA9410C4B09500FDE3EC /* DBPatient.m */; };
+		32F3465D10C7302F0000B7D6 /* test-database.sqlite in Resources */ = {isa = PBXBuildFile; fileRef = 32F3465C10C7302F0000B7D6 /* test-database.sqlite */; };
+		32F346A210C730AE0000B7D6 /* libsqlite3.0.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 32F346A110C730AE0000B7D6 /* libsqlite3.0.dylib */; };
+		32F346AF10C738210000B7D6 /* ECSConnectionSQLite.m in Sources */ = {isa = PBXBuildFile; fileRef = 32F346AE10C738210000B7D6 /* ECSConnectionSQLite.m */; };
 		BCA749251094F97B007103BA /* PatientRecord.m in Sources */ = {isa = PBXBuildFile; fileRef = BCA749241094F97B007103BA /* PatientRecord.m */; };
 		BCA749281094F9BB007103BA /* Pharmacy.m in Sources */ = {isa = PBXBuildFile; fileRef = BCA749271094F9BB007103BA /* Pharmacy.m */; };
 		BCA7492B1094F9F6007103BA /* diagnosticTests.m in Sources */ = {isa = PBXBuildFile; fileRef = BCA7492A1094F9F6007103BA /* diagnosticTests.m */; };
@@ -83,6 +86,12 @@
 		32B6FA9410C4B09500FDE3EC /* DBPatient.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = DBPatient.m; path = DataClasses/DBPatient.m; sourceTree = "<group>"; };
 		32B6FA9E10C4B1CC00FDE3EC /* DBTypes.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DBTypes.h; path = DataClasses/DBTypes.h; sourceTree = "<group>"; };
 		32CA4F630368D1EE00C91783 /* MobileHIS_Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MobileHIS_Prefix.pch; sourceTree = "<group>"; };
+		32F3465C10C7302F0000B7D6 /* test-database.sqlite */ = {isa = PBXFileReference; lastKnownFileType = file; name = "test-database.sqlite"; path = "Databases/test-database.sqlite"; sourceTree = "<group>"; };
+		32F346A110C730AE0000B7D6 /* libsqlite3.0.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libsqlite3.0.dylib; path = /usr/lib/libsqlite3.0.dylib; sourceTree = "<absolute>"; };
+		32F346AD10C738210000B7D6 /* ECSConnectionSQLite.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ECSConnectionSQLite.h; path = ECS/ECSConnectionSQLite.h; sourceTree = "<group>"; };
+		32F346AE10C738210000B7D6 /* ECSConnectionSQLite.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ECSConnectionSQLite.m; path = ECS/ECSConnectionSQLite.m; sourceTree = "<group>"; };
+		32F346B610C738EF0000B7D6 /* ECSConnection.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ECSConnection.h; path = ECS/ECSConnection.h; sourceTree = "<group>"; };
+		32F346B910C739320000B7D6 /* DBClasses.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DBClasses.h; path = DataClasses/DBClasses.h; sourceTree = "<group>"; };
 		8D1107310486CEB800E47090 /* MobileHIS-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "MobileHIS-Info.plist"; plistStructureDefinitionIdentifier = "com.apple.xcode.plist.structure-definition.iphone.info-plist"; sourceTree = "<group>"; };
 		BCA749231094F97B007103BA /* PatientRecord.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PatientRecord.h; sourceTree = "<group>"; };
 		BCA749241094F97B007103BA /* PatientRecord.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PatientRecord.m; sourceTree = "<group>"; };
@@ -111,6 +120,7 @@
 				1D60589F0D05DD5A006BFB54 /* Foundation.framework in Frameworks */,
 				1DF5F4E00D08C38300B7A737 /* UIKit.framework in Frameworks */,
 				288765FD0DF74451002DB57D /* CoreGraphics.framework in Frameworks */,
+				32F346A210C730AE0000B7D6 /* libsqlite3.0.dylib in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -120,6 +130,7 @@
 		080E96DDFE201D6D7F000001 /* Classes */ = {
 			isa = PBXGroup;
 			children = (
+				32F3479C10C7463F0000B7D6 /* UnitTests */,
 				32B6F9DA10C4A0BC00FDE3EC /* DataClasses */,
 				32B6F9D410C4A0A000FDE3EC /* ECS */,
 				BCA749261094F9BB007103BA /* Pharmacy.h */,
@@ -170,6 +181,7 @@
 		29B97317FDCFA39411CA2CEA /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				32F3465C10C7302F0000B7D6 /* test-database.sqlite */,
 				32B6FA5210C4AA5800FDE3EC /* UIUnitTestViewController.xib */,
 				BCA74988109517EA007103BA /* health-care-shield-24x24.png */,
 				BCA749861095178F007103BA /* red-cross-24x24.png */,
@@ -189,6 +201,7 @@
 		29B97323FDCFA39411CA2CEA /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				32F346A110C730AE0000B7D6 /* libsqlite3.0.dylib */,
 				1DF5F4DF0D08C38300B7A737 /* UIKit.framework */,
 				1D30AB110D05D00D00671497 /* Foundation.framework */,
 				288765FC0DF74451002DB57D /* CoreGraphics.framework */,
@@ -199,6 +212,9 @@
 		32B6F9D410C4A0A000FDE3EC /* ECS */ = {
 			isa = PBXGroup;
 			children = (
+				32F346AD10C738210000B7D6 /* ECSConnectionSQLite.h */,
+				32F346AE10C738210000B7D6 /* ECSConnectionSQLite.m */,
+				32F346B610C738EF0000B7D6 /* ECSConnection.h */,
 			);
 			name = ECS;
 			sourceTree = "<group>";
@@ -233,8 +249,16 @@
 				32A6F9C810C605BD00261FBC /* DBPatientMedication.m */,
 				32A6F9DE10C60AF300261FBC /* DBPatientProcedure.h */,
 				32A6F9DF10C60AF300261FBC /* DBPatientProcedure.m */,
+				32F346B910C739320000B7D6 /* DBClasses.h */,
 			);
 			name = DataClasses;
+			sourceTree = "<group>";
+		};
+		32F3479C10C7463F0000B7D6 /* UnitTests */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = UnitTests;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -290,6 +314,7 @@
 				BCA749871095178F007103BA /* red-cross-24x24.png in Resources */,
 				BCA74989109517EA007103BA /* health-care-shield-24x24.png in Resources */,
 				32B6FA5410C4AA5800FDE3EC /* UIUnitTestViewController.xib in Resources */,
+				32F3465D10C7302F0000B7D6 /* test-database.sqlite in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -320,6 +345,7 @@
 				32A6F9F010C60D4900261FBC /* DBPatientVital.m in Sources */,
 				32A6F9F710C60F7000261FBC /* DBDiagnosticResult.m in Sources */,
 				32A6F9FE10C6139D00261FBC /* DBMedication.m in Sources */,
+				32F346AF10C738210000B7D6 /* ECSConnectionSQLite.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

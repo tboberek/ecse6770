@@ -157,4 +157,27 @@
 	email = [input retain];
 }
 
+- (BOOL) equals : (DBPatient*) patient
+{
+	BOOL success = FALSE;
+	
+	if ([self pid] == [patient pid] &&
+		[[self dob] isEqual: [patient dob]] &&
+		[[self name] isEqual: [patient name]] &&
+		[[self sex] isEqual: [patient sex]]	&&
+		[[self password] isEqual: [patient password]] &&
+		[[self address] isEqual: [patient address]] &&
+		[[self city] isEqual: [patient city]] &&
+		[[self state] isEqual: [patient state]] &&
+		[[self zip] isEqual: [patient zip]] &&
+		[[self phone] isEqual: [patient phone]] &&
+		[[self email] isEqual: [patient email]])
+	{
+		success = TRUE;
+	}
+	
+	return success;
+		
+}
+
 @end

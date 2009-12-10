@@ -95,4 +95,9 @@
 	takenBy = [input retain];
 }
 
+- (BOOL) equals: (DBPatientVital*) vitals
+{
+	return NO;
+}
+
 @end

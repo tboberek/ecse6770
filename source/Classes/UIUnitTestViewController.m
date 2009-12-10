@@ -7,7 +7,8 @@
 //
 
 #import "UIUnitTestViewController.h"
-#import "ECSConnectionSQLite.h"
+
+#import "UTECSScenarioTests.h"
 
 
 @implementation UIUnitTestViewController
@@ -26,23 +27,43 @@
 // Implement viewDidLoad to do additional setup after loading the view, typically from a nib.
 - (void)viewDidLoad 
 {
+	// Create a title string for our results alert box
+	NSString* resultTitle = @"ECS Unit Tests";
+	
+	// Create a string to display our results to the user
+	NSMutableString* result = [NSMutableString stringWithCapacity: 0];
+	
+	// Set up the label for the 'Update Patient Vitals' usecase test
+	[result appendString: @"'Update Patient Vitals': "];
+	
+	// Create a new scenario unit test object
+	UTECSScenarioTests* unitTest = [UTECSScenarioTests alloc];
+	
+	// Run the 'Update Patient Vitals' usecase test
+	if ([unitTest updatePatientVitals])
+	{
+		[result appendString: @"Passed\n"];
+	}
+	else 
+	{
+		[result appendString: @"Failed\n"];
+	}
+	
+	// Display the results of our tests the user
+	UIAlertView* messageBox = [[UIAlertView alloc] initWithTitle:resultTitle 
+														message:result delegate:self 
+														cancelButtonTitle:@"OK" 
+														otherButtonTitles:nil, nil];
+	
+	[messageBox show];
+	[messageBox release];	
+
+	/*
 	NSString* testTitle = @"Unit Test Results";
 	
 	NSMutableString* testText = [NSMutableString stringWithCapacity: 10];
 	
-	// Basic DB Connection unit test
-	[testText appendString:@"DB Connection: "];
-	
-	ECSConnectionSQLite* sqlConnection = [ECSConnectionSQLite alloc];
-	
-	if ([sqlConnection open: @"test-database.sqlite"])
-	{
-		[testText appendString:@"Passed"];
-	}
-	else 
-	{
-		[testText appendString:@"Failed"];
-	}
+
 	
 	// Basic Patient add / retrieve test
 	[testText appendString: @"\nAdd / Retrieve Patient: "];
@@ -68,7 +89,7 @@
 	[patient setPid: pid];
 	
 	// Retrieve the patient
-	DBPatient* patientFromDB = [sqlConnection getPatient: pid];
+	DBPatient* patientFromDB = [sqlConnection retrievePatient: pid];
 	
 	if ([patient equals: patientFromDB])
 	{
@@ -78,6 +99,29 @@
 	{
 		[testText appendString: @"Failed"];
 	}
+	
+	// Test updating the patient data
+	[testText appendString: @"\nUpdate Patient Test: "];
+	
+	// Update the patient data
+	[patient setName: @"Updated Name"];
+	
+	// Push the changes to the database
+	BOOL success = [sqlConnection updatePatient: patient];
+	
+	// Get the changes back from the database
+	patientFromDB = [sqlConnection retrievePatient: [patient pid]];
+	
+	// Check to see if we just updated the data
+	if (success && [patient equals: patientFromDB])
+	{
+		[testText appendString: @"Passed"];
+	}
+	else 
+	{
+		[testText appendString: @"Failed"];
+	}
+		
 	
 	// Test initializing the database
 	[testText appendString: @"\nInit DB Test: "];
@@ -97,7 +141,7 @@
 	// Add the patient again
 	PatientID newPid = [sqlConnection addPatient: patient];
 	
-	// If the pid is 1, the DB was initialize
+	// If the pid is 1, the DB was initialized
 	if (1 == newPid)
 	{
 		[testText appendString: @"Passed"];
@@ -129,6 +173,7 @@
 	//{
 	//	[labelResults setText : @"Basic Unit Test Failed"];
 	//}
+	*/
 	
 	[super viewDidLoad];
 }

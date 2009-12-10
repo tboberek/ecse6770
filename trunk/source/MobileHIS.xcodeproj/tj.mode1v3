@@ -229,6 +229,8 @@
 			<key>Layout</key>
 			<array>
 				<dict>
+					<key>BecomeActive</key>
+					<true/>
 					<key>ContentConfiguration</key>
 					<dict>
 						<key>PBXBottomSmartGroupGIDs</key>
@@ -273,14 +275,14 @@
 							<key>PBXSmartGroupTreeModuleOutlineStateSelectionKey</key>
 							<array>
 								<array>
-									<integer>3</integer>
-									<integer>2</integer>
+									<integer>10</integer>
+									<integer>6</integer>
 									<integer>1</integer>
 									<integer>0</integer>
 								</array>
 							</array>
 							<key>PBXSmartGroupTreeModuleOutlineStateVisibleRectKey</key>
-							<string>{{0, 0}, {219, 579}}</string>
+							<string>{{0, 0}, {219, 576}}</string>
 						</dict>
 						<key>PBXTopSmartGroupGIDs</key>
 						<array/>
@@ -292,14 +294,14 @@
 					<key>GeometryConfiguration</key>
 					<dict>
 						<key>Frame</key>
-						<string>{{0, 0}, {236, 597}}</string>
+						<string>{{0, 0}, {236, 594}}</string>
 						<key>GroupTreeTableConfiguration</key>
 						<array>
 							<string>MainColumn</string>
 							<real>219</real>
 						</array>
 						<key>RubberWindowFrame</key>
-						<string>8 140 1214 638 0 0 1280 778 </string>
+						<string>8 143 1214 635 0 0 1280 778 </string>
 					</dict>
 					<key>Module</key>
 					<string>PBXSmartGroupTreeModule</string>
@@ -310,14 +312,12 @@
 					<key>Dock</key>
 					<array>
 						<dict>
-							<key>BecomeActive</key>
-							<true/>
 							<key>ContentConfiguration</key>
 							<dict>
 								<key>PBXProjectModuleGUID</key>
 								<string>1CE0B20306471E060097A5F4</string>
 								<key>PBXProjectModuleLabel</key>
-								<string>UTECSScenarioTests.h</string>
+								<string>ECSAppInterface.h</string>
 								<key>PBXSplitModuleInNavigatorKey</key>
 								<dict>
 									<key>Split0</key>
@@ -325,11 +325,11 @@
 										<key>PBXProjectModuleGUID</key>
 										<string>1CE0B20406471E060097A5F4</string>
 										<key>PBXProjectModuleLabel</key>
-										<string>UTECSScenarioTests.h</string>
+										<string>ECSAppInterface.h</string>
 										<key>_historyCapacity</key>
 										<integer>0</integer>
 										<key>bookmark</key>
-										<string>3266B50310D0AB76008008EF</string>
+										<string>328120F310D0B33F00C90E74</string>
 										<key>history</key>
 										<array>
 											<string>32B6F9EF10C4A15D00FDE3EC</string>
@@ -373,18 +373,17 @@
 											<string>32C192BF10D0A61600A01B5A</string>
 											<string>32C192C310D0A61600A01B5A</string>
 											<string>32C192C410D0A61600A01B5A</string>
-											<string>32C192E410D0A79E00A01B5A</string>
-											<string>32C192ED10D0A7B800A01B5A</string>
 											<string>32C192FC10D0A84800A01B5A</string>
 											<string>32C192FE10D0A84800A01B5A</string>
 											<string>32C192FF10D0A84800A01B5A</string>
 											<string>32C1930010D0A84800A01B5A</string>
 											<string>32C1930110D0A84800A01B5A</string>
 											<string>32C1930210D0A84800A01B5A</string>
-											<string>32C1930610D0A86300A01B5A</string>
 											<string>3266B50110D0AB76008008EF</string>
-											<string>3266B50210D0AB76008008EF</string>
-											<string>32C192E010D0A79E00A01B5A</string>
+											<string>328120E410D0B2D600C90E74</string>
+											<string>328120E510D0B2D600C90E74</string>
+											<string>328120E610D0B2D600C90E74</string>
+											<string>32C192ED10D0A7B800A01B5A</string>
 										</array>
 									</dict>
 									<key>SplitCount</key>
@@ -396,14 +395,14 @@
 							<key>GeometryConfiguration</key>
 							<dict>
 								<key>Frame</key>
-								<string>{{0, 0}, {973, 592}}</string>
+								<string>{{0, 0}, {973, 589}}</string>
 								<key>RubberWindowFrame</key>
-								<string>8 140 1214 638 0 0 1280 778 </string>
+								<string>8 143 1214 635 0 0 1280 778 </string>
 							</dict>
 							<key>Module</key>
 							<string>PBXNavigatorGroup</string>
 							<key>Proportion</key>
-							<string>592pt</string>
+							<string>589pt</string>
 						</dict>
 						<dict>
 							<key>ContentConfiguration</key>
@@ -418,7 +417,7 @@
 								<key>Frame</key>
 								<string>{{0, 597}, {973, 0}}</string>
 								<key>RubberWindowFrame</key>
-								<string>8 140 1214 638 0 0 1280 778 </string>
+								<string>8 143 1214 635 0 0 1280 778 </string>
 							</dict>
 							<key>Module</key>
 							<string>XCDetailModule</string>
@@ -442,9 +441,9 @@
 			</array>
 			<key>TableOfContents</key>
 			<array>
-				<string>3266B50410D0AB76008008EF</string>
+				<string>328120E810D0B2D600C90E74</string>
 				<string>1CE0B1FE06471DED0097A5F4</string>
-				<string>3266B50510D0AB76008008EF</string>
+				<string>328120E910D0B2D600C90E74</string>
 				<string>1CE0B20306471E060097A5F4</string>
 				<string>1CE0B20506471E060097A5F4</string>
 			</array>
@@ -582,11 +581,12 @@
 	<integer>5</integer>
 	<key>WindowOrderList</key>
 	<array>
+		<string>1CD10A99069EF8BA00B06720</string>
 		<string>32A455CF10A2F06500A4A533</string>
 		<string>/Users/tj/Documents/code/ecse6770/source/MobileHIS.xcodeproj</string>
 	</array>
 	<key>WindowString</key>
-	<string>8 140 1214 638 0 0 1280 778 </string>
+	<string>8 143 1214 635 0 0 1280 778 </string>
 	<key>WindowToolsV3</key>
 	<array>
 		<dict>
@@ -663,7 +663,7 @@
 			<key>TableOfContents</key>
 			<array>
 				<string>32A455CF10A2F06500A4A533</string>
-				<string>3266B50610D0AB76008008EF</string>
+				<string>328120EA10D0B2D600C90E74</string>
 				<string>1CD0528F0623707200166675</string>
 				<string>XCMainBuildResultsModuleGUID</string>
 			</array>
@@ -785,13 +785,13 @@
 			<key>TableOfContents</key>
 			<array>
 				<string>1CD10A99069EF8BA00B06720</string>
-				<string>32C1921F10D092F700A01B5A</string>
+				<string>328120F410D0B33F00C90E74</string>
 				<string>1C162984064C10D400B95A72</string>
-				<string>32C1922010D092F700A01B5A</string>
-				<string>32C1922110D092F700A01B5A</string>
-				<string>32C1922210D092F700A01B5A</string>
-				<string>32C1922310D092F700A01B5A</string>
-				<string>32C1922410D092F700A01B5A</string>
+				<string>328120F510D0B33F00C90E74</string>
+				<string>328120F610D0B33F00C90E74</string>
+				<string>328120F710D0B33F00C90E74</string>
+				<string>328120F810D0B33F00C90E74</string>
+				<string>328120F910D0B33F00C90E74</string>
 			</array>
 			<key>ToolbarConfiguration</key>
 			<string>xcode.toolbar.config.debugV3</string>

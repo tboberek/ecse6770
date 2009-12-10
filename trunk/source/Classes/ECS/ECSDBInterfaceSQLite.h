@@ -8,11 +8,11 @@
 
 #import <Foundation/Foundation.h>
 #import <sqlite3.h>
-#import "ECSConnection.h"
+#import "ECSDBInterface.h"
 
 
 
-@interface ECSConnectionSQLite : NSObject <ECSConnection>
+@interface ECSDBInterfaceSQLite : ECSDBInterface
 {
 	sqlite3* database;
 }

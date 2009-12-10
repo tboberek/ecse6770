@@ -6,10 +6,9 @@
 //  Copyright 2009 __MyCompanyName__. All rights reserved.
 //
 
-#import "ECSConnectionSQLite.h"
+#import "ECSDBInterfaceSQLite.h"
 
-
-@implementation ECSConnectionSQLite
+@implementation ECSDBInterfaceSQLite
 - (id) init
 {
 	if ( self = [super init])
@@ -143,7 +142,7 @@
 }
 
 // Functions to load from the database
-- (DBPatient*) getPatient : (PatientID) pid
+- (DBPatient*) retrievePatient: (PatientID) pid
 {
 	DBPatient* patient = nil;
 	
@@ -183,6 +182,40 @@
 	return patient;
 }
 
+/*
+- (DBMedication*) retrieve: (MedicationID) mid
+{
+	DBMedication* medication = nil;
+	
+	if ([self isConnected])
+	{
+		const char*	sql = "SELECT ID,NAME,DESCRIPTION,DRUG_INTERACTIONS,SIDE_EFFECTS FROM MEDICATIONS WHERE id=?";
+		sqlite3_stmt* statement = nil;
+		
+		if (SQLITE_OK == sqlite3_prepare_v2 (database, sql, -1, &statement, nil))
+		{
+			// Bind our pid to the sql statement
+			sqlite3_bind_int (statement, 1, mid);
+			
+			// Attempt to execute the statement, which should only return a single row
+			if (SQLITE_ROW == sqlite3_step (statement))
+			{
+				medication = [DBMedication alloc];
+				[medication setMid: sqlite3_column_int (statement, 0)];
+				[medication setName: [[NSString alloc] initWithCString: (char*)sqlite3_column_text (statement, 1)]];
+				[medication setDescription: [[NSString alloc] initWithCString: (char*)sqlite3_column_text (statement, 1)]];
+				[medication setDrugInteractions: [[NSString alloc] initWithCString: (char*)sqlite3_column_text (statement, 1)]];
+				[medication setSideEffects: [[NSString alloc] initWithCString: (char*)sqlite3_column_text (statement, 1)]];
+			}
+			// Clean up the sqlite resources
+			sqlite3_finalize (statement);
+		}
+	}
+	
+	return medication;
+}
+*/
+ 
 // Functions to add to the database
 - (PatientID) addPatient : (DBPatient*) patient
 {
@@ -219,6 +252,76 @@
 	}
 	
 	return pid;
+}
+
+- (MedicationID) addMedication : (DBMedication*) medication
+{
+	MedicationID mid = -1;
+	
+	if ([self isConnected])
+	{
+		const char*	sql = "INSERT INTO MEDICATIONS (NAME,DESCRIPTION,DRUG_INTERACTIONS,SIDE_EFFECTS) VALUES(?,?,?,?)";
+		sqlite3_stmt* statement = nil;
+		
+		if (SQLITE_OK == sqlite3_prepare_v2(database, sql, -1, &statement, nil))
+		{
+			// Bind our variables
+			sqlite3_bind_text (statement, 1, [[medication name] UTF8String], -1, SQLITE_TRANSIENT);
+			sqlite3_bind_text (statement, 2, [[medication description] UTF8String], -1, SQLITE_TRANSIENT);
+			sqlite3_bind_text (statement, 3, [[medication drugInteractions] UTF8String], -1, SQLITE_TRANSIENT);
+			sqlite3_bind_text (statement, 4, [[medication sideEffects] UTF8String], -1, SQLITE_TRANSIENT);
+			
+			// Attempt to insert our statement
+			if (SQLITE_DONE == sqlite3_step (statement))
+			{
+				mid = sqlite3_last_insert_rowid (database);
+			}
+			
+			// Finalize our sqlite statement to clean it up
+			sqlite3_finalize (statement);
+		}
+	}
+	
+	return mid;
+}
+
+// Functions to update the database
+- (BOOL) updatePatient : (DBPatient*) patient
+{
+	bool updateSuccessful = NO;
+	
+	if ([self isConnected])
+	{
+		const char*	sql = "UPDATE PATIENTS SET NAME=?,SEX=?,DATE_OF_BIRTH=?,PASSWORD=?,ADDRESS=?,CITY=?,STATE=?,ZIP=?,PHONE=?,EMAIL=? WHERE ID=?";
+		sqlite3_stmt* statement = nil;
+		
+		if (SQLITE_OK == sqlite3_prepare_v2(database, sql, -1, &statement, nil))
+		{
+			// Bind our variables
+			sqlite3_bind_text (statement, 1, [[patient name] UTF8String], -1, SQLITE_TRANSIENT);
+			sqlite3_bind_text (statement, 2, [[patient sex] UTF8String], -1, SQLITE_TRANSIENT);
+			sqlite3_bind_text (statement, 3, [[[patient dob] description] UTF8String], -1, SQLITE_TRANSIENT);
+			sqlite3_bind_text (statement, 4, [[patient password] UTF8String], -1, SQLITE_TRANSIENT);
+			sqlite3_bind_text (statement, 5, [[patient address] UTF8String], -1, SQLITE_TRANSIENT);
+			sqlite3_bind_text (statement, 6, [[patient city] UTF8String], -1, SQLITE_TRANSIENT);
+			sqlite3_bind_text (statement, 7, [[patient state] UTF8String], -1, SQLITE_TRANSIENT);
+			sqlite3_bind_text (statement, 8, [[patient zip] UTF8String], -1, SQLITE_TRANSIENT);
+			sqlite3_bind_text (statement, 9, [[patient phone] UTF8String], -1, SQLITE_TRANSIENT);
+			sqlite3_bind_text (statement, 10, [[patient email] UTF8String], -1, SQLITE_TRANSIENT);
+			sqlite3_bind_int (statement, 11, [patient pid]);
+			
+			// Attempt to insert our statement
+			if (SQLITE_DONE == sqlite3_step (statement))
+			{
+				updateSuccessful = YES;
+			}
+			
+			// Finalize our sqlite statement to clean it up
+			sqlite3_finalize (statement);
+		}
+	}
+	
+	return updateSuccessful;
 }
 
 @end

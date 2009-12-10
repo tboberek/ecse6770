@@ -33,4 +33,6 @@
 - (void) setComment : (NSString*) input;
 - (void) setTakenBy : (NSString*) input;
 
+- (BOOL) equals: (DBPatientVital*) vitals;
+
 @end

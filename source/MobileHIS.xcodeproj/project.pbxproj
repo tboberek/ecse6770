@@ -16,6 +16,8 @@
 		3208494810CF342E00FEE306 /* UTECSScenarioTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 3208494710CF342E00FEE306 /* UTECSScenarioTests.m */; };
 		3208497E10CF38D800FEE306 /* ECSDBInterface.m in Sources */ = {isa = PBXBuildFile; fileRef = 3208497D10CF38D800FEE306 /* ECSDBInterface.m */; };
 		320849EA10CF4EC600FEE306 /* ECSAppInterface.m in Sources */ = {isa = PBXBuildFile; fileRef = 320849E910CF4EC600FEE306 /* ECSAppInterface.m */; };
+		328B887110D41A6F00FA3C5D /* ECSDBInterfaceFactory.m in Sources */ = {isa = PBXBuildFile; fileRef = 328B887010D41A6F00FA3C5D /* ECSDBInterfaceFactory.m */; };
+		328B889710D41E6200FA3C5D /* ECSAppInterfaceFactory.m in Sources */ = {isa = PBXBuildFile; fileRef = 328B889610D41E6200FA3C5D /* ECSAppInterfaceFactory.m */; };
 		32A6F94910C5E1B300261FBC /* DBAllergy.m in Sources */ = {isa = PBXBuildFile; fileRef = 32A6F94810C5E1B300261FBC /* DBAllergy.m */; };
 		32A6F95910C5E48F00261FBC /* DBProcedure.m in Sources */ = {isa = PBXBuildFile; fileRef = 32A6F95810C5E48F00261FBC /* DBProcedure.m */; };
 		32A6F96410C5EAFD00261FBC /* DBDiagnosticTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 32A6F96310C5EAFD00261FBC /* DBDiagnosticTest.m */; };
@@ -64,6 +66,10 @@
 		3208497D10CF38D800FEE306 /* ECSDBInterface.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ECSDBInterface.m; path = ecs/ECSDBInterface.m; sourceTree = "<group>"; };
 		320849E810CF4EC600FEE306 /* ECSAppInterface.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ECSAppInterface.h; path = ECS/ECSAppInterface.h; sourceTree = "<group>"; };
 		320849E910CF4EC600FEE306 /* ECSAppInterface.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ECSAppInterface.m; path = ECS/ECSAppInterface.m; sourceTree = "<group>"; };
+		328B886F10D41A6F00FA3C5D /* ECSDBInterfaceFactory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ECSDBInterfaceFactory.h; path = ECS/ECSDBInterfaceFactory.h; sourceTree = "<group>"; };
+		328B887010D41A6F00FA3C5D /* ECSDBInterfaceFactory.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ECSDBInterfaceFactory.m; path = ECS/ECSDBInterfaceFactory.m; sourceTree = "<group>"; };
+		328B889510D41E6200FA3C5D /* ECSAppInterfaceFactory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ECSAppInterfaceFactory.h; path = ECS/ECSAppInterfaceFactory.h; sourceTree = "<group>"; };
+		328B889610D41E6200FA3C5D /* ECSAppInterfaceFactory.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ECSAppInterfaceFactory.m; path = ECS/ECSAppInterfaceFactory.m; sourceTree = "<group>"; };
 		32A6F94710C5E1B300261FBC /* DBAllergy.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DBAllergy.h; path = DataClasses/DBAllergy.h; sourceTree = "<group>"; };
 		32A6F94810C5E1B300261FBC /* DBAllergy.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = DBAllergy.m; path = DataClasses/DBAllergy.m; sourceTree = "<group>"; };
 		32A6F95710C5E48F00261FBC /* DBProcedure.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DBProcedure.h; path = DataClasses/DBProcedure.h; sourceTree = "<group>"; };
@@ -223,6 +229,10 @@
 		32B6F9D410C4A0A000FDE3EC /* ECS */ = {
 			isa = PBXGroup;
 			children = (
+				328B889510D41E6200FA3C5D /* ECSAppInterfaceFactory.h */,
+				328B889610D41E6200FA3C5D /* ECSAppInterfaceFactory.m */,
+				328B886F10D41A6F00FA3C5D /* ECSDBInterfaceFactory.h */,
+				328B887010D41A6F00FA3C5D /* ECSDBInterfaceFactory.m */,
 				32F346AD10C738210000B7D6 /* ECSDBInterfaceSQLite.h */,
 				32F346AE10C738210000B7D6 /* ECSDBInterfaceSQLite.m */,
 				32F346B610C738EF0000B7D6 /* ECSDBInterface.h */,
@@ -368,6 +378,8 @@
 				3208497E10CF38D800FEE306 /* ECSDBInterface.m in Sources */,
 				320849EA10CF4EC600FEE306 /* ECSAppInterface.m in Sources */,
 				32C1921A10D08D8600A01B5A /* ECSInterface.m in Sources */,
+				328B887110D41A6F00FA3C5D /* ECSDBInterfaceFactory.m in Sources */,
+				328B889710D41E6200FA3C5D /* ECSAppInterfaceFactory.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

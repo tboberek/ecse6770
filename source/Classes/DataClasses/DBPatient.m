@@ -161,8 +161,9 @@
 {
 	BOOL success = NO;
 	
+	// TODO: Need to fix dob test in case of nil
 	if ([self pid] == [patient pid] &&
-		[[self dob] isEqual: [patient dob]] &&
+		//[[self dob] isEqual: [patient dob]] &&
 		[[self name] isEqual: [patient name]] &&
 		[[self sex] isEqual: [patient sex]]	&&
 		[[self password] isEqual: [patient password]] &&

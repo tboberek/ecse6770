@@ -11,7 +11,7 @@
 
 @protocol ECSDBInterface
 
-- (ECSResult) verifyUserCredentials: (NSString*) username password: (NSString*) password;
+- (ECSRoleID) verifyLogin: (NSString*) username password: (NSString*) password;
 
 - (BOOL) open : (NSString*) filename;
 - (void) close;
@@ -19,20 +19,18 @@
 - (BOOL) isConnected;
 
 // Functions to load from the database
+- (NSDictionary*) retrieveAllPatients;
 - (DBPatient*) retrievePatient : (PatientID) pid;
-//- (DBMedication*) retrieve : (MedicationID) mid;
+- (DBPatientVital*) retrievePatientVital : (int) vid;
 
 // Functions to add to the database
 - (PatientID) addPatient : (DBPatient*) patient;
 - (MedicationID) addMedication : (DBMedication*) medication;
+- (int) addPatientVital : (DBPatientVital*) vitalEntry;
 
 // Functions to update the database
 - (BOOL) updatePatient : (DBPatient*) patient;
 
-//- (void) format;
-
-//- (BOOL) connect;
-//- (DBPatient*) loadPatient : PatientID pid;
 @end
 
 @interface ECSDBInterface : NSObject<ECSDBInterface>

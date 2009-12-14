@@ -96,8 +96,20 @@
 }
 
 - (BOOL) equals: (DBPatientVital*) vitals
-{
-	return NO;
+{	
+	BOOL equal = NO;
+	
+	if ([self pid] == [vitals pid] &&
+		[[self temp] isEqualToString: [vitals temp]] &&
+		[[self bloodPressure] isEqualToString: [vitals bloodPressure]] &&
+		[[self pulse] isEqualToString: [vitals pulse]] &&
+		[[self comment] isEqualToString: [vitals comment]] &&
+		[[self takenBy] isEqualToString: [vitals takenBy]])
+	{
+		equal = YES;
+	}
+	
+	return equal;
 }
 
 @end

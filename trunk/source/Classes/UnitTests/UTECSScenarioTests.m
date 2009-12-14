@@ -15,7 +15,7 @@
 {
 	if ( self = [super init])
 	{
-		pass = NO;
+		pass = YES;
 	}
 	return self;
 }
@@ -30,13 +30,13 @@
 	
 	// UI	req. ser.	Log in						from ECS
 	NSArray* availableActions = 
-		[ecs logIn: @"testUser" password: @"testPass"];
+		[ecs logIn: @"Test Doctor" password: @"Test Password"];
 	
 	// ECS	req. ser.	Accept Available Actions	from UI
 	[self acceptAvailableActions: availableActions];
 	
 	// UI	req. ser.	Get Patient List			from ECS
-	NSArray* patientList = [ecs getPatientList];
+	NSDictionary* patientList = [ecs getPatientList];
 	
 	// ECS	req. ser.	Accept Patient List			from UI
 	PatientID pid = [self acceptPatientList: patientList];
@@ -54,68 +54,86 @@
 	[self fillOutVitalsEntry: vitalsEntry];
 	
 	// UI	req. ser.	Commit Vitals Entry			from ECS
-	int result = [ecs commitVitalsEntry: vitalsEntry];
+	DBPatientVital* result = [ecs commitVitalsEntry: vitalsEntry];
 	
 	// ECS	req. ser.	Accept Commit Result		from UI
 	[self acceptCommitResult: result];
 	
-	// Return our results
+	// Verify our results
+	pass = [result equals: vitalsEntry];
+
 	return pass;
 }
 
 // Emulate UI
 - (BOOL) acceptECSInterface: (ECSInterface*) ecs
 {
-	pass = pass && [ecs isLoggedIn];
+	pass = pass && ecs != nil;
 	
 	return pass;
 }
 
 - (BOOL) acceptAvailableActions: (NSArray*) availableActions
 {
+
 	// Verify that we have received the expected available
 	// actions
-	pass = pass && ([availableActions count] == 2);
-	pass = pass && ([availableActions objectAtIndex: 0] == @"Get Patient List");
-	pass = pass && ([availableActions objectAtIndex: 1] == @"Get Patient - Search");
+	pass = pass && ([availableActions count] == 8);
+	pass = pass && ([availableActions objectAtIndex: 0] ==  @"Log Out");
+	pass = pass && ([availableActions objectAtIndex: 1] ==  @"Order Lab");
+	pass = pass && ([availableActions objectAtIndex: 2] ==  @"Order Prescription");
+	pass = pass && ([availableActions objectAtIndex: 3] ==  @"View Labs");
+	pass = pass && ([availableActions objectAtIndex: 4] ==  @"View Prescriptions");
+	pass = pass && ([availableActions objectAtIndex: 5] ==  @"Edit Patient Chart");
+	pass = pass && ([availableActions objectAtIndex: 6] ==  @"Access Patient Chart");
+	pass = pass && ([availableActions objectAtIndex: 7] ==  @"Contact Patient");
 	
 	return pass;
 }
 
-- (BOOL) acceptPatientList: (NSArray*) patientList
+- (PatientID) acceptPatientList: (NSDictionary*) patientList
 {
+	// simulate selecting a patient
+	PatientID pid = 1;
+	
 	// Verify that we have the expected test data
 	pass = pass && ([patientList count] == 3);
-	pass = pass && ([patientList objectAtIndex: 0] == @"Gibbs, George");
-	pass = pass && ([patientList objectAtIndex: 1] == @"Newsome, Howier");
-	pass = pass && ([patientList objectAtIndex: 2] == @"Webb, Emily");
 	
-	return pass;
+	//pass = pass && ([[patientList objectForKey: 1] equalToString: @"Payten Manning"]);
+	//pass = pass && ([[patientList objectForKey: 2] equalToString: @"Eli Manning"]);
+	//pass = pass && ([patientList count] == 3);
+	//pass = pass && ([patientList objectAtIndex: 0] == @"Gibbs, George");
+	//pass = pass && ([patientList objectAtIndex: 1] == @"Newsome, Howier");
+	//pass = pass && ([patientList objectAtIndex: 2] == @"Webb, Emily");
+	
+	return pid;
 }
 
-- (BOOL) acceptPatientChart: (DBPatient*) patientChart
+- (int) acceptPatientChart: (DBPatient*) patientChart
 {
 	// Create expected test data
 	DBPatient* baseline = [DBPatient alloc];
 	
-	[baseline setDob : [[NSDate alloc] initWithString: @"2001-03-24 10:45:32 +0600"]];
-	[baseline setName : @"Gibbs, George"];
+	[baseline setPid: 1];
+	[baseline setDob : nil];
+	[baseline setName : @"Payton Manning"];
 	[baseline setSex : @"male"];
-	[baseline setPassword : @"gibberish"];
-	[baseline setAddress : @"14 Hemenway Street"];
-	[baseline setCity : @"Boston"];
-	[baseline setState : @"MA"];
-	[baseline setZip : @"02115"];
-	[baseline setPhone : @"617-435-7090"];
-	[baseline setEmail : @"test@example.com"];
+	[baseline setPassword : @"asdhsajdkhsajdh"];
+	[baseline setAddress : @"26 Heavy Road"];
+	[baseline setCity : @"Rockville"];
+	[baseline setState : @"TN"];
+	[baseline setZip : @"01234"];
+	[baseline setPhone : @"123-341-1238"];
+	[baseline setEmail : @"manning1@hotmail.com"];
 	
 	// Verify that provided test data matches expected test data
 	pass = pass && [baseline equals: patientChart];
 	
-	return pass;
+	// Simulate update vitals
+	return 3;
 }
 
-- (BOOL) acceptCommitResult: (ECSResult) commitResult
+- (BOOL) acceptCommitResult: (DBPatientVital*) commitResult
 {
 	// Verify that the commit was successful
 	pass = pass && (ECS_SUCCESS == commitResult);
@@ -125,19 +143,14 @@
 
 - (BOOL) fillOutVitalsEntry: (DBPatientVital*) vitalsEntry
 {
-	// Create Expected test data
-	DBPatientVital* baseline = [DBPatientVital alloc];
+	[vitalsEntry setPid: 1];
+	[vitalsEntry setTemp: @"99.7"];
+	[vitalsEntry setBloodPressure: @"132/78"];
+	[vitalsEntry setPulse: @"89"];
+	[vitalsEntry setComment: @"Patient slightly flushed"];
+	[vitalsEntry setTakenBy: @"Dr. Fine"];
 	
-	[baseline setPid: 1];
-	[baseline setTemp: @"99.7"];
-	[baseline setBloodPressure: @"132/78"];
-	[baseline setPulse: @"89"];
-	[baseline setComment: @"Patient slightly flushed"];
-	[baseline setTakenBy: @"Dr. Fine"];
-	
-	pass = pass && [baseline equals: vitalsEntry];
-	
-	return pass;
+	return true;
 }
 
 

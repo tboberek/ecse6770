@@ -24,10 +24,10 @@
 // tests
 
 // Emulate UI
-- (BOOL) acceptPatientList: (NSArray*) patientList;
+- (PatientID) acceptPatientList: (NSDictionary*) patientList;
+- (int) acceptPatientChart: (DBPatient*) patientChart;
 - (BOOL) acceptECSInterface: (ECSInterface*) ecs;
-- (BOOL) acceptPatientChart: (DBPatient*) patientChart;
-- (BOOL) acceptCommitResult: (ECSResult) commitResult;
+- (BOOL) acceptCommitResult: (DBPatientVital*) commitResult;
 - (BOOL) acceptAvailableActions: (NSArray*) availableActions;
 - (BOOL) fillOutVitalsEntry: (DBPatientVital*) vitalsEntry;
 

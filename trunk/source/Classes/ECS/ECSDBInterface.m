@@ -9,9 +9,6 @@
 #import "ECSDBInterface.h"
 
 @implementation ECSDBInterface
-- (ECSResult) verifyUserCredentials: (NSString*) username password: (NSString*) password
-{
-	return ECS_LOGIN_FAILURE;
-}
+
 
 @end

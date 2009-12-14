@@ -15,6 +15,7 @@
 
 }
 
-- (NSArray*) getAvailableActions: (ECSResult) loginResult;
+- (NSArray*) getAvailableActions: (ECSRoleID) loginResult;
+- (NSDictionary*) createPatientList: (NSDictionary*) patientRecords;
 
 @end

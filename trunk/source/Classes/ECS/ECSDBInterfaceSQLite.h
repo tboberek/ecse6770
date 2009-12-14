@@ -23,6 +23,7 @@
 - (BOOL) initEditableFileCopy : (NSString*) filename;
 
 - (NSString*) getEditablePath : (NSString*) filename;
+- (NSArray*) retrieveAllPatientIDs;
 
 
 @end

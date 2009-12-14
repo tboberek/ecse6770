@@ -17,16 +17,17 @@
 {
 	ECSDBInterface* db;
 	ECSAppInterface* app;
+	ECSRoleID	userRole;
 }
 
 - (BOOL) isLoggedIn;
 
 - (NSArray*) logIn: (NSString*) username password: (NSString*) password;
 
-- (NSArray*) getPatientList;
+- (NSDictionary*) getPatientList;
 - (DBPatient*) getPatientChart: (PatientID) pid;
 - (DBPatientVital*) getNewVitalsEntry;
-- (ECSResult) commitVitalsEntry: (DBPatientVital*) vitalsEntry;
+- (DBPatientVital*) commitVitalsEntry: (DBPatientVital*) vitalsEntry;
 
 - (void) storeAppInterface: (ECSAppInterface*) inputECS;
 - (void) storeDBInterface: (ECSDBInterface*) inputDB;

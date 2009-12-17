@@ -7,57 +7,80 @@
 //
 
 #import "PatientRecord.h"
+#import "secondlevelviewcontroller.h"
+#import "NavAppDelegate.h"
+
+
 
 
 @implementation PatientRecord
+@synthesize controllers;
 
-/*
- // The designated initializer.  Override if you create the controller programmatically and want to perform customization that is not appropriate for viewDidLoad.
-- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil {
-    if (self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil]) {
-        // Custom initialization
-    }
-    return self;
+-(id)initWithStyle:(UITableViewStyle)style{
+	if (self = [super initWithStyle:style]) {
+		
+	}
+	return self;
 }
-*/
 
-/*
-// Implement loadView to create a view hierarchy programmatically, without using a nib.
-- (void)loadView {
+-(void)viewDidLoad {
+	self.title = @"Patient";
+	NSMutableArray *array = [[NSMutableArray alloc] init];
+	self.controllers = array;
+	[array release];
+	[super viewDidLoad];
 }
-*/
 
-/*
-// Implement viewDidLoad to do additional setup after loading the view, typically from a nib.
-- (void)viewDidLoad {
-    [super viewDidLoad];
+-(void)dealloc {
+	[controllers release];
+	[super dealloc];
 }
-*/
 
-/*
-// Override to allow orientations other than the default portrait orientation.
-- (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation {
-    // Return YES for supported orientations
-    return (interfaceOrientation == UIInterfaceOrientationPortrait);
+#pragma mark -
+#pragma mark Table Data Source Methods
+-(NSInteger)tableView:(UITableView *)tableView
+numberOfRowsInSection:(NSInteger)section {
+	return [self.controllers count];
 }
-*/
 
-- (void)didReceiveMemoryWarning {
-	// Releases the view if it doesn't have a superview.
-    [super didReceiveMemoryWarning];
+-(UITableViewCell *)tableView:(UITableView *)tableView
+		cellForRowAtIndexPath:(NSIndexPath *)indexPath {
+	static NSString *PatientRecordCell = @"PatientRecordCell";
 	
-	// Release any cached data, images, etc that aren't in use.
-}
+	UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:PatientRecordCell];
+	if (cell == nil) {
+		cell = [[[UITableViewCell alloc] initWithFrame:CGRectZero reuseIdentifier: PatientRecordCell] autorelease];
+		
+	}
+	
+	NSInteger row = [indexPath row];
+	secondlevelviewcontroller *controller = [controllers objectAtIndex:row];
+	cell.textLabel.text = controller.title;
+	cell.imageView.image = controller.rowImage;
+	return cell;
+	
+}	
+	
+#pragma mark -
+#pragma mark Table View Delegate Methods
+-(UITableViewCellAccessoryType)tableView:(UITableView *)tableView
+accessoryTypeForRowWithIndexPath:(NSIndexPath *)indexPath
+{
+	return UITableViewCellAccessoryDisclosureIndicator;
+}	
 
-- (void)viewDidUnload {
-	// Release any retained subviews of the main view.
-	// e.g. self.myOutlet = nil;
-}
-
-
-- (void)dealloc {
-    [super dealloc];
+-(void)tableView:(UITableView *)tableView
+didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+	NSUInteger row = [indexPath row];
+	secondlevelviewcontroller *nextController = [self.controllers objectAtIndex:row];
+	
+	NavAppDelegate *delegate = 
+	[[UIApplication sharedApplication]delegate];
+	[delegate.navController pushViewController:nextController animated:YES];
 }
 
 
 @end
+
+
+
